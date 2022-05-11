@@ -158,7 +158,7 @@ echo "COMPLETE"
 #######################################
 
  # renovate: datasource=github-releases depName=hashicorp/terraform
-TERRAFORM_VERSION=v1.1.8
+TERRAFORM_VERSION=v1.1.9
 # 'v' prefix required for renovate to query github.com for new release, but needs to be removed to pull from hashicorp.com
 TERRAFORM_VERSION="${TERRAFORM_VERSION:1}"
 BINARY=terraform
@@ -178,7 +178,7 @@ clean "${TMP_DIR}"
 #######################################
 
  # renovate: datasource=github-releases depName=gruntwork-io/terragrunt
-TERRAGRUNT_VERSION=v0.36.10
+TERRAGRUNT_VERSION=v0.36.11
 BINARY=terragrunt
 FILE_NAME="terragrunt_${OS}_amd64"
 URL="https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT_VERSION}"
@@ -197,7 +197,7 @@ clean "${TMP_DIR}"
 #######################################
 
  # renovate: datasource=github-releases depName=terraform-docs/terraform-docs
-TERRAFORM_DOCS_VERSION=v0.15.0
+TERRAFORM_DOCS_VERSION=v0.16.0
 BINARY=terraform-docs
 FILE_NAME="terraform-docs-${TERRAFORM_DOCS_VERSION}-${OS}-amd64.tar.gz"
 URL="https://terraform-docs.io/dl/${TERRAFORM_DOCS_VERSION}"
@@ -233,7 +233,7 @@ clean "${TMP_DIR}"
 #######################################
 
  # renovate: datasource=github-releases depName=aquasecurity/tfsec
-TFSEC_VERSION=v1.20.1
+TFSEC_VERSION=v1.20.2
 BINARY=tfsec
 FILE_NAME="tfsec-${OS}-amd64"
 URL="https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VERSION}"
