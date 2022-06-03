@@ -146,7 +146,9 @@ echo "COMPLETE"
 #######################################
 
  # renovate: datasource=github-tags depName=IBM/detect-secrets versioning="regex:^(?<compatibility>.*)-?(?<major>\\d+)\\.(?<minor>\\d+)\\+ibm\\.(?<patch>\\d+)\\.dss$"
-DETECT_SECRETS_VERSION=0.13.1+ibm.48
+DETECT_SECRETS_VERSION=0.13.1+ibm.48.dss
+# This command works by first reversing the string, then cutting the first four characters, and then reversing it again to give you the desired output (aka 0.13.1+ibm.48)
+DETECT_SECRETS_VERSION="$(echo ${DETECT_SECRETS_VERSION} | rev | cut -c5- | rev)"
 PACKAGE=detect-secrets
 echo
 echo "-- Installing ${PACKAGE} ${DETECT_SECRETS_VERSION}..."
