@@ -9,6 +9,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
+      # renovate: datasource=docker depName=icr.io/goldeneye_images/goldeneye-ci-image
       image: icr.io/goldeneye_images/goldeneye-ci-image:@sha256:354d7923003d2bff782f4b70b3563596185851c6e48ca9fd278fe8f32e395f88
       env:
         NO_CONTAINER: "true"
