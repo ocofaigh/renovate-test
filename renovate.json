@@ -5,11 +5,11 @@
   "groupName": "all",
   "regexManagers": [
     {
-      "fileMatch": ["^module-assets/ci/install-deps.sh$"],
+      "fileMatch": ["^.github/workflows/common.yml$"],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=(?<currentValue>.*)\\s"
+        "image:(?<depName>.*?)@(?<currentDigest>sha256:[a-f0-9]+)s"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+      "datasourceTemplate": "docker"
     }
   ]
 }
