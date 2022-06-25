@@ -6,7 +6,7 @@
   "regexManagers": [
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
-      "matchStrings": ["image: (?<depName>.*?):(?<currentValue>.*?)@sha256:(?<currentDigest>sha256:[a-f0-9]+)s"],
+      "matchStrings": ["image: (?<depName>.*?)@sha256(?<currentValue>.*?)\\n"],
       "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
       "datasourceTemplate": "docker",
       "depNameTemplate": "icr.io/goldeneye_images/ubi8-cluster-tools"
