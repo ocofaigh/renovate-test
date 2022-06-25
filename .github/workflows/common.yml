@@ -9,7 +9,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
-      image: node:12@sha256:6e5264cd4cfaefd7174b2bc10c7f9a1c2b99d98d127fc57a802d264da9fb43bd
+      image: icr.io/goldeneye_images/ubi8-cluster-tools@sha256:9e955f10dfa3fc0786b615e47a2ff7c93bc8147985aaa3a76633837d17cbff9f
       env:
         NO_CONTAINER: "true"
 
