@@ -7,9 +7,9 @@
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?image: =(?<currentValue>.*)\\s"
+        "image:(?<depName>.*?):@sha256:(?<currentDigest>[a-f0-9]+)s"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+      "datasourceTemplate": "docker"
     }
   ]
 }
