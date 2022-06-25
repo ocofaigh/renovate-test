@@ -7,7 +7,7 @@
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
       "matchStrings": ["image: (?<currentValue>.*?)\\n"],
-      "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}""
+      "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}"
       "datasourceTemplate": "docker"
     }
   ]
