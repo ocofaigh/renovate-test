@@ -6,7 +6,7 @@
   "regexManagers": [
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
-      "matchStrings": ["\\s+image: (?<depName>.*?)@(?<currentDigest>sha256:[a-f0-9]+)\\s"],
+      "matchStrings": ["\\s+image: (?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)\\s"],
       "autoReplaceStringTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
       "datasourceTemplate": "docker"
     }
