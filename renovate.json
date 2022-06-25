@@ -7,8 +7,7 @@
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
       "matchStrings": ["image: (?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)s"],
-      "datasourceTemplate": "docker",
-      "autoReplaceStringTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}"
+      "datasourceTemplate": "docker"
     }
   ]
 }
