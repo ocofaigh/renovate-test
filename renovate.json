@@ -6,10 +6,10 @@
   "regexManagers": [
     {
       "fileMatch": ["^.github/workflows/common.yml$"],
-      "matchStrings": ["image: (?<depName>\\S*):(?<currentValue>.*?)\\n"],
+      "matchStrings": ["image: (?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)s"],
       "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
       "datasourceTemplate": "docker",
-      "depNameTemplate": "icr.io/goldeneye_images/ubi8-cluster-tools"
+      "depNameTemplate": "node"
     }
   ]
 }
