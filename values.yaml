@@ -12,7 +12,7 @@ tolerations:
     effect: NoExecute
 
 container:
-  image: "icr.io/goldeneye_images/ubi8-cluster-tools@sha256:9e955f10dfa3fc0786b615e47a2ff7c93bc8147985aaa3a76633837d17cbff9f"
+  image: "icr.io/goldeneye_images/goldeneye-ci-image:@sha256:354d7923003d2bff782f4b70b3563596185851c6e48ca9fd278fe8f32e395f88"
 
 scriptCrio: "configure_crio.sh"
 scriptYum: "configure_yum.sh"
