@@ -15,4 +15,5 @@
       "matchDatasources": ["docker"],
       "schedule": ["before 1pm on Monday"]
     }
+  ]
 }
