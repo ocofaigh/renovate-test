@@ -8,7 +8,8 @@
       "fileMatch": ["^.github/workflows/common.yml$"],
       "matchStrings": ["image: (?<currentValue>.*?)\\n"],
       "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "depName": "icr.io/goldeneye_images/ubi8-cluster-tools"
     }
   ]
 }
