@@ -9,7 +9,8 @@
       "matchStrings": ["image: (?<currentValue>.*?)\\n"],
       "datasourceTemplate": "docker",
       "depNameTemplate": "icr.io/goldeneye_images/ubi8-cluster-tools",
-      "autoReplaceStringTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}"
+      "autoReplaceStringTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
+      "image: (?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)s"
     }
   ]
 }
