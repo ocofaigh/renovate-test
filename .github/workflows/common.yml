@@ -7,4 +7,4 @@ jobs:
   CI_Pipeline:
     runs-on: ubuntu-latest
     container:
-      image: icr.io/goldeneye_images/ubi8-cluster-tools@sha256:9e955f10dfa3fc0786b615e47a2ff7c93bc8147985aaa3a76633837d17cbff9f
+      image: icr.io/goldeneye_images/ubi8-cluster-tools@sha256:c731b19a2d8641d0c05f393594e955620502b747d6ad543f7dc7bafbff965ddb
