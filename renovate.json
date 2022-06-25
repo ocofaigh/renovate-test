@@ -10,7 +10,7 @@
       "versioningTemplate": "{{depName}}{{#if newValue}}:{{newValue}}{{/if}}{{#if newDigest}}@{{newDigest}}{{/if}}",
       "datasourceTemplate": "docker",
       "depNameTemplate": "icr.io/goldeneye_images/ubi8-cluster-tools",
-      "autoReplaceStringTemplate": "image: {{{depName}}}:{{{newValue}}}"
+      "autoReplaceStringTemplate": "image: {{{depName}}}@sha256{{{newValue}}}"
     }
   ]
 }
