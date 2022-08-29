@@ -16,12 +16,12 @@
 #######################################
 # Build the preliminary image
 #######################################
-FROM ghcr.io/external-secrets/external-secrets:v0.5.9 as buildImg
+FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/external-secrets/external-secrets:v0.5.9 as buildImg
 
 #######################################
 # Get latest RH updates
 #######################################
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.6 AS update-image
+FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/ubi8/ubi-minimal:8.6 AS update-image
 
 ARG REDHAT_USERNAME
 ARG REDHAT_PASSWORD
