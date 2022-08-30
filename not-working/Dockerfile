@@ -16,7 +16,7 @@
 #######################################
 # Build the preliminary image
 #######################################
-FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/external-secrets/external-secrets:v0.5.9 as buildImg
+FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/external-secrets/external-secrets:v0.5.8 as buildImg
 
 #######################################
 # Get latest RH updates
