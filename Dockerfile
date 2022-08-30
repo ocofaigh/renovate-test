@@ -1,27 +1,9 @@
-################################################################################
-# Copyright 2022 IBM Corp. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-################################################################################
-#######################################
-# Build the preliminary image
-#######################################
-FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/external-secrets/external-secrets:v0.5.9 as buildImg
+#####################################
+#          compile-image            #
+#####################################
+ARG IMAGE
 
-#######################################
-# Get latest RH updates
-#######################################
-FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/ubi8/ubi-minimal:8.6 AS update-image
+FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/ubi8/ubi-minimal:8.6 AS compile-image
 
 ARG REDHAT_USERNAME
 ARG REDHAT_PASSWORD
@@ -39,25 +21,39 @@ RUN set -x \
     && yum --assumeyes upgrade --downloadonly --destdir /tmp/ \
     && yum clean all
 
-#######################################
-# Build the production image
-#######################################
+#####################################
+#           build-image             #
+#####################################
+ARG IMAGE
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.6 AS build-image
+FROM wcp-goldeneye-team-docker-virtual.artifactory.swg-devops.com/ubi8/ubi-minimal:8.6 AS build-image
 
-COPY --from=buildImg /bin/external-secrets /bin/external-secrets
-COPY --from=update-image /tmp /tmp
+ENV SQUID_CACHE_DIR=/var/spool/squid \
+    SQUID_LOG_DIR=/var/log/squid \
+    SQUID_USER=squid
 
+ENV HOME=/home/"${SQUID_USER}"
+
+COPY --from=compile-image /tmp /tmp
+COPY --chmod=755 entrypoint.sh /sbin/entrypoint.sh
+
+# Add runtime user and group, shadow-utils contains these commands
 # hadolint ignore=DL3041
-RUN microdnf upgrade -y \
-    && microdnf install -y dnf \
+RUN set -x \
+    && microdnf install -y shadow-utils systemd dnf \
+    && microdnf upgrade -y \
+    && groupadd --gid 1000 --system "${SQUID_USER}" \
+    && useradd --uid 1000 --system --gid "${SQUID_USER}" --create-home "${SQUID_USER}" \
     && dnf install -y /tmp/*.rpm \
     # resolve SSL-related configuration issues found by VA scan
     && dnf remove -y httpd sqlite mariadb* \
     && rm -rf /etc/httpd /usr/lib64/httpd /usr/include/mysql /usr/include/mysql/mysql \
     && microdnf clean all \
-    && dnf clean all
+    && dnf clean all \
+    && chown -R ${SQUID_USER}:${SQUID_USER} /var/run/ \
+    && chown -R ${SQUID_USER}:${SQUID_USER} /etc/squid/
 
-USER 65534
+USER ${SQUID_USER}
 
-ENTRYPOINT ["/bin/external-secrets"]
+EXPOSE 3128/tcp
+ENTRYPOINT ["/sbin/entrypoint.sh"]
